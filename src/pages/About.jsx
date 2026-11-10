@@ -54,7 +54,7 @@ function About() {
               <div className="about-image-glow"></div>
 
               <img
-                src="../public/images/portfolioPic.png"
+                src="/images/ahsan-profile.png"
                 alt="Ahsan Shahzad"
                 className="about-image"
               />
