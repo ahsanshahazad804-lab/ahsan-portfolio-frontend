@@ -131,7 +131,7 @@ function Hero() {
 
                         {!imageError ? (
                             <img
-                                src="../public/images/portfolioPic.png"
+                                src="/images/portfolioPic.png"
                                 alt="Ahsan Shahzad - Web Developer"
                                 className="hero-profile"
                                 onError={() => setImageError(true)}
