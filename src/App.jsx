@@ -1,5 +1,5 @@
 import Navbar from './components/Navbar'
-import Hero from './pages/hero'
+import Hero from './pages/Hero'
 import About from './pages/About'
 import Services from './pages/Services'
 import Work from './pages/Work'
