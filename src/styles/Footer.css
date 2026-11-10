@@ -1,0 +1,245 @@
+/* ==============================
+   FOOTER
+============================== */
+
+.footer {
+    width: 100%;
+    background: #080808;
+    border-top: 1px solid #292929;
+    padding: 75px 7% 25px;
+}
+
+.footer-container {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* TOP AREA */
+
+.footer-top {
+    display: grid;
+    grid-template-columns: 1.4fr 0.8fr 1fr;
+    gap: 60px;
+    padding-bottom: 55px;
+}
+
+/* BRAND */
+
+.footer-brand {
+    max-width: 350px;
+}
+
+.footer-logo {
+    display: inline-flex;
+    text-decoration: none;
+    margin-bottom: 20px;
+}
+
+.footer-brand > p {
+    color: #929292;
+    font-size: 14px;
+    line-height: 1.8;
+    max-width: 300px;
+    margin-bottom: 24px;
+}
+
+/* SOCIAL LINKS */
+
+.footer-socials {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.footer-socials a {
+    width: 39px;
+    height: 39px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #f5f5f5;
+    background: #151515;
+    border: 1px solid #292929;
+    border-radius: 9px;
+    font-size: 17px;
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+.footer-socials a:hover {
+    color: #ff2638;
+    border-color: #ff2638;
+    box-shadow: 0 0 15px rgba(255, 38, 56, 0.2);
+    transform: translateY(-4px);
+}
+
+/* FOOTER HEADINGS */
+
+.footer-links h3,
+.footer-contact h3 {
+    color: #f5f5f5;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 25px;
+}
+
+/* QUICK LINKS */
+
+.footer-links ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.footer-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #929292;
+    font-size: 14px;
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+.footer-links a svg {
+    opacity: 0;
+    transform: translate(-4px, 4px);
+    transition: 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #ff2638;
+    transform: translateX(4px);
+}
+
+.footer-links a:hover svg {
+    opacity: 1;
+    transform: translate(0, 0);
+}
+
+/* CONTACT */
+
+.footer-contact > a,
+.footer-location {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #929292;
+    font-size: 14px;
+    margin-bottom: 18px;
+}
+
+.footer-contact > a {
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+.footer-contact > a:hover {
+    color: #ff2638;
+}
+
+.footer-contact > a svg,
+.footer-location svg {
+    color: #ff2638;
+    flex-shrink: 0;
+}
+
+/* AVAILABILITY */
+
+.footer-availability {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    color: #929292;
+    font-size: 12px;
+    margin-top: 25px;
+}
+
+.footer-availability span {
+    width: 8px;
+    height: 8px;
+    background: #36d477;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(54, 212, 119, 0.5);
+}
+
+/* BOTTOM AREA */
+
+.footer-bottom {
+    min-height: 65px;
+    border-top: 1px solid #292929;
+    padding-top: 22px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.footer-bottom p {
+    color: #777777;
+    font-size: 12px;
+}
+
+.footer-bottom > p:first-child span {
+    color: #f5f5f5;
+    font-weight: 600;
+}
+
+.footer-made span {
+    color: #ff2638;
+    font-size: 15px;
+}
+
+@media (max-width: 550px) {
+    .footer-bottom {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 15px;
+    }
+}
+
+/* ==============================
+   RESPONSIVE
+============================== */
+
+@media (max-width: 850px) {
+    .footer-top {
+        grid-template-columns: 1fr 1fr;
+        gap: 45px 35px;
+    }
+
+    .footer-brand {
+        grid-column: span 2;
+        max-width: 450px;
+    }
+}
+
+@media (max-width: 550px) {
+    .footer {
+        padding: 60px 6% 22px;
+    }
+
+    .footer-top {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding-bottom: 40px;
+    }
+
+    .footer-brand {
+        grid-column: auto;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 17px;
+    }
+
+    .back-to-top {
+        margin-top: 5px;
+    }
+}

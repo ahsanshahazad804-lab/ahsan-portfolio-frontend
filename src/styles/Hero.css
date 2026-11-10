@@ -1,0 +1,661 @@
+/* ==============================
+   HERO SECTION
+============================== */
+
+.hero {
+  position: relative;
+  min-height: 650px;
+  min-height: calc(100vh - 82px);
+
+  display: flex;
+  align-items: center;
+
+  padding: 80px 7% 100px;
+
+  overflow: hidden;
+  isolation: isolate;
+
+  background: #050505;
+}
+
+.hero-container {
+  position: relative;
+  z-index: 2;
+
+  width: 100%;
+  max-width: 1400px;
+
+  margin: 0 auto;
+
+  display: grid;
+
+  grid-template-columns: 1.05fr 0.95fr;
+
+  align-items: center;
+  gap: 50px;
+}
+
+/* ==============================
+   BACKGROUND EFFECTS
+============================== */
+
+.hero-glow {
+  position: absolute;
+  z-index: -1;
+
+  width: 500px;
+  height: 500px;
+
+  top: 10%;
+  right: -150px;
+
+  background: rgba(229, 9, 20, 0.12);
+
+  filter: blur(120px);
+  border-radius: 50%;
+}
+
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+
+  opacity: 0.16;
+
+  background-image:
+    linear-gradient(rgba(255, 38, 56, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 38, 56, 0.08) 1px, transparent 1px);
+
+  background-size: 65px 65px;
+
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black,
+    transparent
+  );
+}
+
+/* ==============================
+   HERO CONTENT
+============================== */
+
+.hero-content {
+  max-width: 610px;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 10px 17px;
+
+  border: 1px solid rgba(255, 38, 56, 0.3);
+  border-radius: 30px;
+
+  background: rgba(229, 9, 20, 0.08);
+
+  color: #f5f5f5;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+
+  margin-bottom: 28px;
+}
+
+.status-dot,
+.floating-dot {
+  width: 8px;
+  height: 8px;
+
+  background: #ff2638;
+  border-radius: 50%;
+
+  box-shadow: 0 0 10px #ff2638;
+
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    box-shadow: 0 0 10px #ff2638;
+  }
+
+  50% {
+    opacity: 0.5;
+    box-shadow: 0 0 3px #ff2638;
+  }
+}
+
+.hero-intro {
+  color: #ff2638;
+  font-size: 21px;
+  font-weight: 600;
+
+  margin-bottom: 8px;
+}
+
+.hero-content h1 {
+  font-size: clamp(42px, 5vw, 70px);
+  line-height: 1.1;
+
+  font-weight: 800;
+  letter-spacing: -2px;
+
+  color: #f5f5f5;
+}
+
+.hero-content h1 span {
+  color: #ff2638;
+
+  text-shadow: 0 0 25px rgba(255, 38, 56, 0.2);
+}
+
+/* ==============================
+   ANIMATED ROLE
+============================== */
+
+.hero-role {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  color: #ff2638;
+
+  font-size: 19px;
+  font-weight: 600;
+
+  margin-top: 22px;
+  margin-bottom: 20px;
+}
+
+.role-text {
+  animation: roleFade 0.5s ease;
+}
+
+@keyframes roleFade {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-description {
+  max-width: 510px;
+
+  color: #a8adb7;
+
+  font-size: 16px;
+  line-height: 1.9;
+
+  margin-bottom: 30px;
+}
+
+/* ==============================
+   HERO BUTTONS
+============================== */
+
+.hero-buttons {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 17px;
+}
+
+.hero-btn {
+  min-height: 48px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  padding: 0 24px;
+
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+
+  border-radius: 30px;
+
+  transition: all 0.3s ease;
+}
+
+.primary-btn {
+  color: white;
+  background: #e50914;
+
+  border: 1px solid #ff2638;
+
+  box-shadow: 0 0 15px rgba(229, 9, 20, 0.35);
+}
+
+.primary-btn:hover {
+  transform: translateY(-4px);
+
+  box-shadow:
+    0 0 15px #e50914,
+    0 0 35px rgba(229, 9, 20, 0.45);
+}
+
+.secondary-btn {
+  color: white;
+  background: transparent;
+
+  border: 1px solid #555;
+}
+
+.secondary-btn:hover {
+  color: #ff2638;
+  border-color: #ff2638;
+
+  transform: translateY(-4px);
+}
+
+/* ==============================
+   SOCIAL LINKS
+============================== */
+
+.hero-socials {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  margin-top: 35px;
+}
+
+.hero-socials span {
+  color: #a8adb7;
+  font-size: 13px;
+  margin-right: 5px;
+}
+
+.hero-socials a {
+  width: 39px;
+  height: 39px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #f5f5f5;
+
+  background: #151515;
+  border: 1px solid #292929;
+
+  border-radius: 10px;
+
+  transition: 0.3s ease;
+}
+
+.hero-socials a:hover {
+  color: #ff2638;
+  border-color: #ff2638;
+
+  box-shadow: 0 0 15px rgba(255, 38, 56, 0.3);
+
+  transform: translateY(-4px);
+}
+
+/* ==============================
+   PROFILE IMAGE
+============================== */
+
+.hero-visual {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 480px;
+}
+
+.hero-image-frame {
+  position: relative;
+
+  width: 100%;
+  max-width: 420px;
+  height: 460px;
+
+  border: 1px solid rgba(255, 38, 56, 0.65);
+
+  border-radius: 12px;
+
+  overflow: hidden;
+
+
+  clip-path: polygon(
+    8% 0,
+    100% 0,
+    100% 90%,
+    92% 100%,
+    0 100%,
+    0 8%
+  );
+
+  box-shadow:
+    0 0 15px rgba(255, 38, 56, 0.2),
+    inset 0 0 20px rgba(255, 38, 56, 0.08);
+}
+
+.hero-profile {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+  object-position: center top;
+
+
+  transition: 0.5s ease;
+}
+
+.hero-image-frame:hover .hero-profile {
+  filter: grayscale(0%);
+  transform: scale(1.04);
+}
+
+/* Image Placeholder */
+
+.hero-placeholder {
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+
+  color: #ff2638;
+
+  background:
+    radial-gradient(circle, rgba(229, 9, 20, 0.2), transparent 60%),
+    #111;
+}
+
+.hero-placeholder span {
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: 5px;
+}
+
+.hero-placeholder p {
+  color: #888;
+  font-size: 11px;
+  letter-spacing: 2px;
+}
+
+/* Image Glow */
+
+.hero-image-glow {
+  position: absolute;
+
+  width: 350px;
+  height: 350px;
+
+  background: rgba(229, 9, 20, 0.3);
+
+  filter: blur(100px);
+  border-radius: 50%;
+}
+
+/* ==============================
+   FLOATING BADGE
+============================== */
+
+.floating-badge {
+  position: absolute;
+
+  bottom: 35px;
+  left: -35px;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 15px 20px;
+
+  background: rgba(20, 20, 20, 0.95);
+
+  border: 1px solid rgba(255, 38, 56, 0.4);
+  border-radius: 12px;
+
+  box-shadow: 0 0 20px rgba(229, 9, 20, 0.15);
+
+  animation: float 3s ease-in-out infinite;
+}
+
+.floating-badge strong {
+  font-size: 12px;
+}
+
+.floating-badge p {
+  color: #a8adb7;
+  font-size: 11px;
+  margin-top: 4px;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* ==============================
+   DECORATIVE SHAPES
+============================== */
+
+.hero-decoration {
+  position: absolute;
+  z-index: -1;
+
+  border: 1px solid rgba(255, 38, 56, 0.3);
+
+  transform: rotate(45deg);
+}
+
+.decoration-one {
+  width: 80px;
+  height: 80px;
+
+  top: 15px;
+  right: -25px;
+}
+
+.decoration-two {
+  width: 35px;
+  height: 35px;
+
+  bottom: 15px;
+  left: 5px;
+
+  border-color: #ff2638;
+}
+
+/* ==============================
+   SCROLL INDICATOR
+============================== */
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 25px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  color: #777;
+  font-size: 10px;
+  letter-spacing: 2px;
+
+  text-decoration: none;
+}
+
+.scroll-indicator span {
+  width: 20px;
+  height: 30px;
+
+  border: 1px solid #ff2638;
+  border-radius: 20px;
+
+  position: relative;
+}
+
+.scroll-indicator span::after {
+  content: '';
+
+  position: absolute;
+  top: 6px;
+  left: 8px;
+
+  width: 2px;
+  height: 6px;
+
+  background: #ff2638;
+
+  animation: scrollDown 1.5s infinite;
+}
+
+@keyframes scrollDown {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+/* ==============================
+   TABLET RESPONSIVE
+============================== */
+
+@media (max-width: 900px) {
+
+  .hero {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+
+  .hero-container {
+    gap: 25px;
+  }
+
+  .hero-image-frame {
+    height: 380px;
+  }
+
+  .hero-visual {
+    min-height: 400px;
+  }
+
+  .floating-badge {
+    left: -15px;
+  }
+
+}
+
+/* ==============================
+   MOBILE RESPONSIVE
+============================== */
+
+@media (max-width: 650px) {
+
+  .hero {
+    min-height: auto;
+
+    padding: 75px 22px 100px;
+  }
+
+  .hero-container {
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+
+  .hero-content {
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  .hero-badge {
+    font-size: 9px;
+  }
+
+  .hero-content h1 {
+    font-size: clamp(38px, 10vw, 55px);
+    letter-spacing: -1.5px;
+  }
+
+  .hero-role {
+    justify-content: center;
+    font-size: 16px;
+  }
+
+  .hero-description {
+    font-size: 14px;
+  }
+
+  .hero-buttons {
+    justify-content: center;
+  }
+
+  .hero-socials {
+    justify-content: center;
+  }
+
+  .hero-visual {
+    min-height: 370px;
+  }
+
+  .hero-image-frame {
+    max-width: 330px;
+    height: 370px;
+  }
+
+  .floating-badge {
+    left: 0;
+    bottom: 15px;
+  }
+
+  .scroll-indicator {
+    bottom: 25px;
+    white-space: nowrap;
+  }
+
+}
+
+@media (max-width: 380px) {
+
+  .hero {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .hero-buttons {
+    gap: 10px;
+  }
+
+  .hero-btn {
+    padding: 0 17px;
+    font-size: 12px;
+  }
+
+}
