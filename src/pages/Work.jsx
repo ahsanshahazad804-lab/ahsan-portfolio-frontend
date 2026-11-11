@@ -1,3 +1,4 @@
+import { motion } from 'motion/react'
 import { ArrowUpRight, ExternalLink } from 'lucide-react'
 import { FaGithub } from 'react-icons/fa'
 import '../styles/Work.css'
@@ -58,45 +59,97 @@ const projects = [
   },
 ]
 
+const fadeUp = {
+  hidden: { opacity: 0, y: 40 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, ease: 'easeOut' },
+  },
+}
+
 function Work() {
   return (
     <section className="work" id="work">
       <div className="work-container">
 
         {/* Section Heading */}
-        <div className="work-heading">
-          <div className="section-label">
+        <motion.div
+          className="work-heading"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={{
+            hidden: {},
+            visible: {
+              transition: { staggerChildren: 0.18 },
+            },
+          }}
+        >
+          <motion.div className="section-label" variants={fadeUp}>
             <span className="label-line"></span>
             SELECTED WORK
-          </div>
+          </motion.div>
 
           <div className="work-title-row">
-            <h2>
+            <motion.h2 variants={fadeUp}>
               Projects I've
               <span> built.</span>
-            </h2>
+            </motion.h2>
 
-            <p>
+            <motion.p variants={fadeUp}>
               A selection of projects where ideas, design, and development
               come together to create useful digital experiences.
-            </p>
+            </motion.p>
           </div>
-        </div>
+        </motion.div>
 
         {/* Projects Grid */}
-        <div className="work-grid">
+        <motion.div
+          className="work-grid"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          variants={{
+            hidden: {},
+            visible: {
+              transition: { staggerChildren: 0.18 },
+            },
+          }}
+        >
           {projects.map((project) => (
-            <article className="work-card" key={project.number}>
+            <motion.article
+              className="work-card"
+              key={project.number}
+              variants={{
+                hidden: { opacity: 0, y: 55, scale: 0.96 },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  scale: 1,
+                  transition: {
+                    duration: 0.65,
+                    ease: 'easeOut',
+                  },
+                },
+              }}
+              whileHover={{
+                y: -8,
+                transition: { duration: 0.25 },
+              }}
+            >
 
               {/* Project Preview */}
               <div className={`work-preview ${project.preview}`}>
 
                 {project.image ? (
-                  <img
+                  <motion.img
                     src={project.image}
                     alt={`${project.title} project preview`}
                     className="work-preview-image"
                     loading="lazy"
+                    whileHover={{ scale: 1.06 }}
+                    transition={{ duration: 0.5 }}
                   />
                 ) : (
                   <div className="work-placeholder">
@@ -160,23 +213,31 @@ function Work() {
                 </div>
 
               </div>
-            </article>
+            </motion.article>
           ))}
-        </div>
+        </motion.div>
 
         {/* Bottom Link */}
-        <div className="work-bottom">
+        <motion.div
+          className="work-bottom"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.5 }}
+          variants={fadeUp}
+        >
           <p>Interested in seeing more of my work?</p>
 
-          <a
+          <motion.a
             href="https://github.com/ahsanshahazad804-lab"
             target="_blank"
             rel="noopener noreferrer"
+            whileHover={{ x: 7 }}
+            transition={{ duration: 0.2 }}
           >
             Explore my GitHub
             <ArrowUpRight size={18} />
-          </a>
-        </div>
+          </motion.a>
+        </motion.div>
 
       </div>
     </section>

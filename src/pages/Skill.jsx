@@ -1,3 +1,5 @@
+import { motion } from 'motion/react'
+
 import {
     Code2,
     Server,
@@ -55,6 +57,18 @@ const skillGroups = [
     },
 ]
 
+const fadeUp = {
+    hidden: { opacity: 0, y: 40 },
+    visible: {
+        opacity: 1,
+        y: 0,
+        transition: {
+            duration: 0.7,
+            ease: 'easeOut',
+        },
+    },
+}
+
 function Skills() {
     return (
         <section className="skills section-padding" id="skills">
@@ -62,32 +76,77 @@ function Skills() {
             <div className="skills-container">
 
                 {/* SECTION HEADER */}
-                <div className="skills-header">
+                <motion.div
+                    className="skills-header"
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.25 }}
+                    variants={{
+                        hidden: {},
+                        visible: {
+                            transition: { staggerChildren: 0.18 },
+                        },
+                    }}
+                >
 
-                    <div className="section-label">
+                    <motion.div className="section-label" variants={fadeUp}>
                         <span></span>
                         WHAT I WORK WITH
-                    </div>
+                    </motion.div>
 
-                    <h2>
+                    <motion.h2 variants={fadeUp}>
                         My Technical <span>Skills.</span>
-                    </h2>
+                    </motion.h2>
 
-                    <p>
+                    <motion.p variants={fadeUp}>
                         The technologies and tools I use to turn ideas
                         into functional and engaging digital experiences.
-                    </p>
+                    </motion.p>
 
-                </div>
+                </motion.div>
 
                 {/* SKILL CARDS */}
-                <div className="skills-grid">
+                <motion.div
+                    className="skills-grid"
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.15 }}
+                    variants={{
+                        hidden: {},
+                        visible: {
+                            transition: { staggerChildren: 0.2 },
+                        },
+                    }}
+                >
 
                     {skillGroups.map((group) => {
                         const Icon = group.icon
 
                         return (
-                            <div className="skill-card" key={group.number}>
+                            <motion.div
+                                className="skill-card"
+                                key={group.number}
+                                variants={{
+                                    hidden: {
+                                        opacity: 0,
+                                        y: 50,
+                                        scale: 0.96,
+                                    },
+                                    visible: {
+                                        opacity: 1,
+                                        y: 0,
+                                        scale: 1,
+                                        transition: {
+                                            duration: 0.65,
+                                            ease: 'easeOut',
+                                        },
+                                    },
+                                }}
+                                whileHover={{
+                                    y: -9,
+                                    transition: { duration: 0.25 },
+                                }}
+                            >
 
                                 <div className="skill-card-top">
 
@@ -95,9 +154,16 @@ function Skills() {
                                         {group.number}
                                     </span>
 
-                                    <div className="skill-icon">
+                                    <motion.div
+                                        className="skill-icon"
+                                        whileHover={{
+                                            rotate: 10,
+                                            scale: 1.12,
+                                        }}
+                                        transition={{ duration: 0.25 }}
+                                    >
                                         <Icon size={25} />
-                                    </div>
+                                    </motion.div>
 
                                 </div>
 
@@ -109,10 +175,19 @@ function Skills() {
 
                                 <div className="skill-tags">
 
-                                    {group.skills.map((skill) => (
-                                        <span key={skill}>
+                                    {group.skills.map((skill, index) => (
+                                        <motion.span
+                                            key={skill}
+                                            initial={{ opacity: 0, y: 10 }}
+                                            whileInView={{ opacity: 1, y: 0 }}
+                                            viewport={{ once: true }}
+                                            transition={{
+                                                duration: 0.35,
+                                                delay: index * 0.06,
+                                            }}
+                                        >
                                             {skill}
-                                        </span>
+                                        </motion.span>
                                     ))}
 
                                 </div>
@@ -122,14 +197,20 @@ function Skills() {
                                     <ArrowUpRight size={18} />
                                 </div>
 
-                            </div>
+                            </motion.div>
                         )
                     })}
 
-                </div>
+                </motion.div>
 
                 {/* BOTTOM NOTE */}
-                <div className="skills-bottom">
+                <motion.div
+                    className="skills-bottom"
+                    initial={{ opacity: 0, y: 25 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.5 }}
+                    transition={{ duration: 0.7 }}
+                >
 
                     <span className="skills-bottom-line"></span>
 
@@ -139,7 +220,7 @@ function Skills() {
 
                     <span className="skills-bottom-line"></span>
 
-                </div>
+                </motion.div>
 
             </div>
 

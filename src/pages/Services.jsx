@@ -1,3 +1,5 @@
+import { motion } from 'motion/react'
+
 import {
   ArrowUpRight,
   Code2,
@@ -50,44 +52,98 @@ const services = [
   },
 ]
 
+const fadeUp = {
+  hidden: { opacity: 0, y: 40 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, ease: 'easeOut' },
+  },
+}
+
 function Services() {
   return (
     <section className="services" id="services">
       <div className="services-container">
 
         {/* Heading */}
-        <div className="services-heading">
-          <div className="section-label">
+        <motion.div
+          className="services-heading"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={{
+            hidden: {},
+            visible: {
+              transition: { staggerChildren: 0.18 },
+            },
+          }}
+        >
+          <motion.div className="section-label" variants={fadeUp}>
             <span className="label-line"></span>
             WHAT I DO
-          </div>
+          </motion.div>
 
           <div className="services-title-row">
-            <h2>
+            <motion.h2 variants={fadeUp}>
               Services I
               <span> provide.</span>
-            </h2>
+            </motion.h2>
 
-            <p>
+            <motion.p variants={fadeUp}>
               Helping businesses and individuals build a strong digital
               presence through modern development and thoughtful design.
-            </p>
+            </motion.p>
           </div>
-        </div>
+        </motion.div>
 
         {/* Service Cards */}
-        <div className="services-grid">
+        <motion.div
+          className="services-grid"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.15 }}
+          variants={{
+            hidden: {},
+            visible: {
+              transition: { staggerChildren: 0.2 },
+            },
+          }}
+        >
           {services.map((service) => (
-            <article className="service-card" key={service.number}>
+            <motion.article
+              className="service-card"
+              key={service.number}
+              variants={{
+                hidden: { opacity: 0, y: 55, scale: 0.96 },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  scale: 1,
+                  transition: {
+                    duration: 0.65,
+                    ease: 'easeOut',
+                  },
+                },
+              }}
+              whileHover={{
+                y: -9,
+                transition: { duration: 0.25 },
+              }}
+            >
 
               <div className="service-card-top">
                 <span className="service-number">
                   {service.number}
                 </span>
 
-                <div className="service-icon">
+                <motion.div
+                  className="service-icon"
+                  whileHover={{ rotate: 8, scale: 1.12 }}
+                  transition={{ duration: 0.25 }}
+                >
                   {service.icon}
-                </div>
+                </motion.div>
               </div>
 
               <span className="service-tag">
@@ -116,19 +172,29 @@ function Services() {
                 <ArrowUpRight size={19} />
               </a>
 
-            </article>
+            </motion.article>
           ))}
-        </div>
+        </motion.div>
 
         {/* Bottom CTA */}
-        <div className="services-bottom">
+        <motion.div
+          className="services-bottom"
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.5 }}
+        >
           <p>Have a project in mind?</p>
 
-          <a href="#contact">
+          <motion.a
+            href="#contact"
+            whileHover={{ x: 7 }}
+            transition={{ duration: 0.2 }}
+          >
             Let's talk about it
             <ArrowUpRight size={18} />
-          </a>
-        </div>
+          </motion.a>
+        </motion.div>
 
       </div>
     </section>

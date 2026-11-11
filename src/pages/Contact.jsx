@@ -1,5 +1,5 @@
-
 import { useState } from 'react'
+import { motion } from 'motion/react'
 
 import {
     FaGithub,
@@ -16,6 +16,15 @@ import {
 } from 'lucide-react'
 
 import '../styles/Contact.css'
+
+const fadeUp = {
+    hidden: { opacity: 0, y: 35 },
+    visible: {
+        opacity: 1,
+        y: 0,
+        transition: { duration: 0.7, ease: 'easeOut' },
+    },
+}
 
 function Contact() {
     const [formData, setFormData] = useState({
@@ -87,42 +96,81 @@ function Contact() {
             <div className="contact-container">
 
                 {/* SECTION HEADER */}
-                <div className="contact-header">
+                <motion.div
+                    className="contact-header"
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.2 }}
+                    variants={{
+                        hidden: {},
+                        visible: {
+                            transition: { staggerChildren: 0.18 },
+                        },
+                    }}
+                >
 
-                    <div className="contact-label">
+                    <motion.div className="contact-label" variants={fadeUp}>
                         <span></span>
                         GET IN TOUCH
-                    </div>
+                    </motion.div>
 
-                    <h2>
+                    <motion.h2 variants={fadeUp}>
                         Let's Build Something <span>Great.</span>
-                    </h2>
+                    </motion.h2>
 
-                    <p>
+                    <motion.p variants={fadeUp}>
                         Have a project in mind or looking for a developer?
                         Let's discuss how we can bring your ideas to life.
-                    </p>
+                    </motion.p>
 
-                </div>
+                </motion.div>
 
                 {/* CONTACT CONTENT */}
                 <div className="contact-content">
 
                     {/* LEFT SIDE */}
-                    <div className="contact-info">
+                    <motion.div
+                        className="contact-info"
+                        initial={{ opacity: 0, x: -45 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true, amount: 0.2 }}
+                        transition={{ duration: 0.8, ease: 'easeOut' }}
+                    >
 
-                        <div className="contact-info-heading">
-                            <h3>Let's Talk</h3>
+                        <motion.div
+                            className="contact-info-heading"
+                            variants={{
+                                hidden: {},
+                                visible: {
+                                    transition: { staggerChildren: 0.15 },
+                                },
+                            }}
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true }}
+                        >
+                            <motion.h3 variants={fadeUp}>Let's Talk</motion.h3>
 
-                            <p>
+                            <motion.p variants={fadeUp}>
                                 I'm open to discussing new projects,
                                 creative ideas and opportunities.
-                            </p>
-                        </div>
+                            </motion.p>
+                        </motion.div>
 
-                        <div className="contact-details">
+                        <motion.div
+                            className="contact-details"
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true }}
+                            variants={{
+                                hidden: {},
+                                visible: {
+                                    transition: { staggerChildren: 0.15 },
+                                },
+                            }}
+                        >
 
-                            <div className="contact-detail-item">
+                            <motion.div className="contact-detail-item" variants={fadeUp}>
                                 <div className="contact-detail-icon">
                                     <Mail size={21} />
                                 </div>
@@ -131,9 +179,9 @@ function Contact() {
                                     <span>Email</span>
                                     <p>ahsanshahazad804@gmail.com</p>
                                 </div>
-                            </div>
+                            </motion.div>
 
-                            <div className="contact-detail-item">
+                            <motion.div className="contact-detail-item" variants={fadeUp}>
                                 <div className="contact-detail-icon">
                                     <Phone size={21} />
                                 </div>
@@ -142,9 +190,9 @@ function Contact() {
                                     <span>Phone</span>
                                     <p>+92 305 6143353</p>
                                 </div>
-                            </div>
+                            </motion.div>
 
-                            <div className="contact-detail-item">
+                            <motion.div className="contact-detail-item" variants={fadeUp}>
                                 <div className="contact-detail-icon">
                                     <MapPin size={21} />
                                 </div>
@@ -153,53 +201,70 @@ function Contact() {
                                     <span>Location</span>
                                     <p>Gujrat, Pakistan</p>
                                 </div>
-                            </div>
+                            </motion.div>
 
-                        </div>
+                        </motion.div>
 
-                        <div className="contact-social-area">
+                        <motion.div
+                            className="contact-social-area"
+                            variants={fadeUp}
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true }}
+                        >
 
                             <span>FOLLOW ME</span>
 
                             <div className="contact-socials">
 
-                                <a
+                                <motion.a
                                     href="https://github.com/ahsanshahazad804-lab"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     aria-label="GitHub"
+                                    whileHover={{ y: -5, scale: 1.08 }}
                                 >
                                     <FaGithub size={19} />
-                                </a>
+                                </motion.a>
 
-                                <a
+                                <motion.a
                                     href="https://www.instagram.com/_ahsan_sheikh001"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     aria-label="Instagram"
+                                    whileHover={{ y: -5, scale: 1.08 }}
                                 >
                                     <FaInstagram size={19} />
-                                </a>
+                                </motion.a>
 
-                                <a
+                                <motion.a
                                     href="https://www.linkedin.com/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     aria-label="LinkedIn"
+                                    whileHover={{ y: -5, scale: 1.08 }}
                                 >
                                     <FaLinkedin size={19} />
-                                </a>
+                                </motion.a>
 
                             </div>
 
-                        </div>
+                        </motion.div>
 
-                    </div>
+                    </motion.div>
 
                     {/* RIGHT SIDE - FORM */}
-                    <form
+                    <motion.form
                         className="contact-form"
                         onSubmit={handleSubmit}
+                        initial={{ opacity: 0, x: 45 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true, amount: 0.15 }}
+                        transition={{
+                            duration: 0.8,
+                            delay: 0.15,
+                            ease: 'easeOut',
+                        }}
                     >
 
                         <div className="contact-form-heading">
@@ -279,15 +344,17 @@ function Contact() {
                             />
                         </div>
 
-                        <button
+                        <motion.button
                             type="submit"
                             className="contact-submit"
                             disabled={isSubmitting}
+                            whileHover={!isSubmitting ? { y: -3, scale: 1.01 } : {}}
+                            whileTap={!isSubmitting ? { scale: 0.97 } : {}}
                         >
                             {isSubmitting ? 'Sending...' : 'Send Message'}
 
                             <Send size={17} />
-                        </button>
+                        </motion.button>
 
                         {status && (
                             <p className="contact-status" role="status">
@@ -295,16 +362,22 @@ function Contact() {
                             </p>
                         )}
 
-                    </form>
+                    </motion.form>
 
                 </div>
 
                 {/* BOTTOM NOTE */}
-                <div className="contact-bottom">
+                <motion.div
+                    className="contact-bottom"
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.5 }}
+                    transition={{ duration: 0.7 }}
+                >
                     <span>HAVE A PROJECT IN MIND?</span>
                     <p>Let's make it happen.</p>
                     <ArrowUpRight size={22} />
-                </div>
+                </motion.div>
 
             </div>
 

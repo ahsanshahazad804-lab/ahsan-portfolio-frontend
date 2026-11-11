@@ -1,5 +1,5 @@
-
 import { useEffect, useState } from 'react'
+import { motion, AnimatePresence } from 'motion/react'
 
 import {
     ArrowUpRight,
@@ -20,11 +20,19 @@ const roles = [
     'Web Designer',
 ]
 
+const fadeUp = {
+    hidden: { opacity: 0, y: 35 },
+    visible: {
+        opacity: 1,
+        y: 0,
+        transition: { duration: 0.7, ease: 'easeOut' },
+    },
+}
+
 function Hero() {
     const [roleIndex, setRoleIndex] = useState(0)
     const [imageError, setImageError] = useState(false)
 
-    // Animated developer title
     useEffect(() => {
         const interval = setInterval(() => {
             setRoleIndex((prev) => (prev + 1) % roles.length)
@@ -36,47 +44,71 @@ function Hero() {
     return (
         <section className="hero" id="home">
 
-            {/* Background Effects */}
             <div className="hero-glow"></div>
             <div className="hero-grid"></div>
 
             <div className="hero-container">
 
                 {/* LEFT CONTENT */}
-                <div className="hero-content">
+                <motion.div
+                    className="hero-content"
+                    initial="hidden"
+                    animate="visible"
+                    variants={{
+                        hidden: {},
+                        visible: {
+                            transition: {
+                                staggerChildren: 0.15,
+                            },
+                        },
+                    }}
+                >
 
-                    <div className="hero-badge">
+                    <motion.div className="hero-badge" variants={fadeUp}>
                         <span className="status-dot"></span>
                         AVAILABLE FOR OPPORTUNITIES
-                    </div>
+                    </motion.div>
 
-                    <p className="hero-intro">
+                    <motion.p className="hero-intro" variants={fadeUp}>
                         Hello, I'm
-                    </p>
+                    </motion.p>
 
-                    <h1>
+                    <motion.h1 variants={fadeUp}>
                         Ahsan <span>Shahzad</span>
-                    </h1>
+                    </motion.h1>
 
-                    <div className="hero-role">
+                    <motion.div className="hero-role" variants={fadeUp}>
                         <Code2 size={21} />
 
-                        <span key={roleIndex} className="role-text">
-                            {roles[roleIndex]}
-                        </span>
-                    </div>
+                        <AnimatePresence mode="wait">
+                            <motion.span
+                                key={roleIndex}
+                                className="role-text"
+                                initial={{ opacity: 0, y: 12 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -12 }}
+                                transition={{ duration: 0.3 }}
+                            >
+                                {roles[roleIndex]}
+                            </motion.span>
+                        </AnimatePresence>
+                    </motion.div>
 
-                    <p className="hero-description">
+                    <motion.p className="hero-description" variants={fadeUp}>
                         I build modern, responsive and user-friendly digital
                         experiences. From powerful web applications to
                         beautiful websites, I turn ideas into reality.
-                    </p>
+                    </motion.p>
 
                     {/* ACTION BUTTONS */}
-                    <div className="hero-buttons">
+                    <motion.div className="hero-buttons" variants={fadeUp}>
 
-                        <a href="#work" className="hero-btn primary-btn">
-                            View My Work
+                        <a
+                            href="/ahsan-cv.pdf"
+                            download="Ahsan-CV.pdf"
+                            className="hero-btn primary-btn"
+                        >
+                            Download CV
                             <ArrowUpRight size={19} />
                         </a>
 
@@ -84,10 +116,10 @@ function Hero() {
                             Contact Me
                         </a>
 
-                    </div>
+                    </motion.div>
 
                     {/* SOCIAL LINKS */}
-                    <div className="hero-socials">
+                    <motion.div className="hero-socials" variants={fadeUp}>
 
                         <span>Follow Me</span>
 
@@ -118,12 +150,21 @@ function Hero() {
                             <FaInstagram size={19} />
                         </a>
 
-                    </div>
+                    </motion.div>
 
-                </div>
+                </motion.div>
 
                 {/* RIGHT PROFILE IMAGE */}
-                <div className="hero-visual">
+                <motion.div
+                    className="hero-visual"
+                    initial={{ opacity: 0, scale: 0.88, x: 35 }}
+                    animate={{ opacity: 1, scale: 1, x: 0 }}
+                    transition={{
+                        duration: 0.9,
+                        delay: 0.3,
+                        ease: 'easeOut',
+                    }}
+                >
 
                     <div className="hero-image-glow"></div>
 
@@ -147,28 +188,41 @@ function Hero() {
                     </div>
 
                     {/* Floating Tech Badge */}
-                    <div className="floating-badge">
+                    <motion.div
+                        className="floating-badge"
+                        animate={{ y: [0, -10, 0] }}
+                        transition={{
+                            duration: 3,
+                            repeat: Infinity,
+                            ease: 'easeInOut',
+                        }}
+                    >
                         <span className="floating-dot"></span>
 
                         <div>
                             <strong>Building Digital</strong>
                             <p>Experiences</p>
                         </div>
-                    </div>
+                    </motion.div>
 
-                    {/* Decorative Elements */}
                     <div className="hero-decoration decoration-one"></div>
                     <div className="hero-decoration decoration-two"></div>
 
-                </div>
+                </motion.div>
 
             </div>
 
             {/* Bottom Scroll Indicator */}
-            <a href="#about" className="scroll-indicator">
+            <motion.a
+                href="#about"
+                className="scroll-indicator"
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.2, duration: 0.6 }}
+            >
                 <span></span>
                 SCROLL TO EXPLORE
-            </a>
+            </motion.a>
 
         </section>
     )

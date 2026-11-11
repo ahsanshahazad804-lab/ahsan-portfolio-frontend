@@ -1,3 +1,5 @@
+import { motion } from 'motion/react'
+
 import {
     ArrowUpRight,
     Mail,
@@ -23,6 +25,30 @@ const footerLinks = [
     { name: 'Contact', id: 'contact' },
 ]
 
+const fadeUp = {
+    hidden: {
+        opacity: 0,
+        y: 35,
+    },
+    visible: {
+        opacity: 1,
+        y: 0,
+        transition: {
+            duration: 0.65,
+            ease: 'easeOut',
+        },
+    },
+}
+
+const staggerContainer = {
+    hidden: {},
+    visible: {
+        transition: {
+            staggerChildren: 0.15,
+        },
+    },
+}
+
 function Footer() {
     const currentYear = new Date().getFullYear()
 
@@ -32,13 +58,27 @@ function Footer() {
             <div className="footer-container">
 
                 {/* TOP FOOTER */}
-                <div className="footer-top">
+                <motion.div
+                    className="footer-top"
+                    variants={staggerContainer}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.15 }}
+                >
 
-                    <div className="footer-brand">
+                    {/* BRAND */}
+                    <motion.div
+                        className="footer-brand"
+                        variants={fadeUp}
+                    >
 
-                        <a href="#home" className="footer-logo">
+                        <motion.a
+                            href="#home"
+                            className="footer-logo"
+                            whileHover={{ y: -3 }}
+                        >
                             <AhsanLogo />
-                        </a>
+                        </motion.a>
 
                         <p>
                             Building modern digital experiences
@@ -47,86 +87,122 @@ function Footer() {
 
                         <div className="footer-socials">
 
-                            <a
+                            <motion.a
                                 href="https://github.com/ahsanshahazad804-lab"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 aria-label="GitHub"
+                                whileHover={{ y: -5, scale: 1.1 }}
+                                whileTap={{ scale: 0.92 }}
                             >
                                 <FaGithub />
-                            </a>
+                            </motion.a>
 
-                            <a
+                            <motion.a
                                 href="https://www.linkedin.com/"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 aria-label="LinkedIn"
+                                whileHover={{ y: -5, scale: 1.1 }}
+                                whileTap={{ scale: 0.92 }}
                             >
                                 <FaLinkedin />
-                            </a>
+                            </motion.a>
 
-                            <a
+                            <motion.a
                                 href="https://www.instagram.com/_ahsan_sheikh001"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 aria-label="Instagram"
+                                whileHover={{ y: -5, scale: 1.1 }}
+                                whileTap={{ scale: 0.92 }}
                             >
                                 <FaInstagram />
-                            </a>
+                            </motion.a>
 
                         </div>
 
-                    </div>
+                    </motion.div>
 
                     {/* QUICK LINKS */}
-                    <div className="footer-links">
+                    <motion.div
+                        className="footer-links"
+                        variants={fadeUp}
+                    >
 
                         <h3>Quick Links</h3>
 
                         <ul>
-                            {footerLinks.map((link) => (
-                                <li key={link.id}>
-                                    <a href={`#${link.id}`}>
+                            {footerLinks.map((link, index) => (
+                                <motion.li
+                                    key={link.id}
+                                    variants={fadeUp}
+                                >
+                                    <motion.a
+                                        href={`#${link.id}`}
+                                        whileHover={{ x: 5 }}
+                                    >
                                         {link.name}
                                         <ArrowUpRight size={14} />
-                                    </a>
-                                </li>
+                                    </motion.a>
+                                </motion.li>
                             ))}
                         </ul>
 
-                    </div>
+                    </motion.div>
 
                     {/* CONTACT INFO */}
-                    <div className="footer-contact">
+                    <motion.div
+                        className="footer-contact"
+                        variants={fadeUp}
+                    >
 
                         <h3>Get In Touch</h3>
 
-                        <a href="mailto:ahsanshahazad804@gmail.com">
+                        <motion.a
+                            href="mailto:ahsanshahazad804@gmail.com"
+                            whileHover={{ x: 5 }}
+                        >
                             <Mail size={17} />
                             <span>ahsanshahazad804@gmail.com</span>
-                        </a>
+                        </motion.a>
 
-                        <a href="tel:+923056144353">
+                        <motion.a
+                            href="tel:+923056144353"
+                            whileHover={{ x: 5 }}
+                        >
                             <Phone size={17} />
                             <span>+92 305 6144353</span>
-                        </a>
+                        </motion.a>
 
-                        <div className="footer-location">
+                        <motion.div
+                            className="footer-location"
+                            variants={fadeUp}
+                        >
                             <MapPin size={17} />
                             <span>Gujrat, Pakistan</span>
-                        </div>
+                        </motion.div>
 
-                        <p className="footer-availability">
+                        <motion.p
+                            className="footer-availability"
+                            variants={fadeUp}
+                        >
                             <span></span>
                             Available for opportunities
-                        </p>
+                        </motion.p>
 
-                    </div>
+                    </motion.div>
 
-                </div>
+                </motion.div>
 
                 {/* COPYRIGHT FOOTER */}
-                <div className="footer-bottom">
+                <motion.div
+                    className="footer-bottom"
+                    variants={fadeUp}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.3 }}
+                >
 
                     <p>
                         © {currentYear} <span>Ahsan Shahzad</span>.
@@ -139,7 +215,7 @@ function Footer() {
                         by Ahsan.
                     </p>
 
-                </div>
+                </motion.div>
 
             </div>
 

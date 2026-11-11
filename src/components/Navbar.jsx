@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { motion } from 'motion/react'
 import { Menu, X, ArrowUpRight } from 'lucide-react'
 import AhsanLogo from './AhsanLogo'
 import '../styles/Navbar.css'
@@ -11,6 +12,37 @@ const navLinks = [
     { name: 'Skills', id: 'skills' },
     { name: 'Contact', id: 'contact' },
 ]
+
+const navbarVariants = {
+    hidden: {
+        opacity: 0,
+        y: -25,
+    },
+    visible: {
+        opacity: 1,
+        y: 0,
+        transition: {
+            duration: 0.65,
+            ease: 'easeOut',
+            staggerChildren: 0.08,
+        },
+    },
+}
+
+const linkVariants = {
+    hidden: {
+        opacity: 0,
+        y: -10,
+    },
+    visible: {
+        opacity: 1,
+        y: 0,
+        transition: {
+            duration: 0.4,
+            ease: 'easeOut',
+        },
+    },
+}
 
 function Navbar() {
     const [menuOpen, setMenuOpen] = useState(false)
@@ -66,21 +98,28 @@ function Navbar() {
     }
 
     return (
-        <header className="navbar">
-
+        <motion.header
+            className="navbar"
+            variants={navbarVariants}
+            initial="hidden"
+            animate="visible"
+        >
             <div className="navbar-container">
 
                 {/* Logo */}
-                <AhsanLogo />
+                <motion.div variants={linkVariants}>
+                    <AhsanLogo />
+                </motion.div>
 
                 {/* Desktop Navigation */}
-                <nav
+                <motion.nav
                     id="mobile-navigation"
                     className={`nav-menu ${menuOpen ? 'nav-menu-open' : ''}`}
                     aria-label="Main navigation"
+                    variants={linkVariants}
                 >
                     {navLinks.map((link) => (
-                        <a
+                        <motion.a
                             key={link.id}
                             href={`#${link.id}`}
                             onClick={handleNavClick}
@@ -89,40 +128,57 @@ function Navbar() {
                             aria-current={
                                 activeSection === link.id ? 'location' : undefined
                             }
+                            whileHover={{ y: -2 }}
+                            whileTap={{ scale: 0.96 }}
                         >
                             {link.name}
-                        </a>
+                        </motion.a>
                     ))}
 
-                    <a
+                    <motion.a
                         href="#contact"
                         className="mobile-cta"
                         onClick={handleNavClick}
+                        whileHover={{ x: 4 }}
+                        whileTap={{ scale: 0.97 }}
                     >
                         Let's Talk <ArrowUpRight size={17} />
-                    </a>
-                </nav>
+                    </motion.a>
+                </motion.nav>
 
                 {/* Desktop CTA */}
-                <a href="#contact" className="navbar-cta">
+                <motion.a
+                    href="#contact"
+                    className="navbar-cta"
+                    variants={linkVariants}
+                    whileHover={{ y: -3, scale: 1.03 }}
+                    whileTap={{ scale: 0.96 }}
+                >
                     Let's Talk
                     <ArrowUpRight size={17} />
-                </a>
+                </motion.a>
 
                 {/* Mobile Menu Button */}
-                <button
+                <motion.button
                     className="menu-toggle"
                     onClick={() => setMenuOpen(!menuOpen)}
                     aria-label={menuOpen ? 'Close navigation' : 'Open navigation'}
                     aria-expanded={menuOpen}
                     aria-controls="mobile-navigation"
+                    whileTap={{ scale: 0.9 }}
                 >
-                    {menuOpen ? <X size={25} /> : <Menu size={25} />}
-                </button>
+                    <motion.span
+                        key={menuOpen ? 'close' : 'open'}
+                        initial={{ opacity: 0, rotate: -45 }}
+                        animate={{ opacity: 1, rotate: 0 }}
+                        transition={{ duration: 0.2 }}
+                    >
+                        {menuOpen ? <X size={25} /> : <Menu size={25} />}
+                    </motion.span>
+                </motion.button>
 
             </div>
-
-        </header>
+        </motion.header>
     )
 }
 
