@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { motion } from 'motion/react'
+import emailjs from '@emailjs/browser'
 
 import {
     FaGithub,
@@ -55,24 +56,29 @@ function Contact() {
         setStatus('')
 
         try {
-            const response = await fetch(
-                'http://localhost:5000/api/contact',
+            const serviceID = import.meta.env.EMAILJS_SERVICE_ID
+            const templateID = import.meta.env.EMAILJS_TEMPLATE_ID
+            const publicKey = import.meta.env.EMAILJS_PUBLIC_KEY
+
+            if (!serviceID || !templateID || !publicKey) {
+                throw new Error('Email service is not configured.')
+            }
+
+            await emailjs.send(
+                serviceID,
+                templateID,
                 {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(formData),
+                    name: formData.name,
+                    email: formData.email,
+                    subject: formData.subject,
+                    message: formData.message,
+                },
+                {
+                    publicKey: publicKey,
                 }
             )
 
-            const data = await response.json()
-
-            if (!response.ok) {
-                throw new Error(data.message || 'Something went wrong.')
-            }
-
-            setStatus(data.message)
+            setStatus('Message sent successfully! I will get back to you soon.')
 
             setFormData({
                 name: '',
@@ -82,8 +88,10 @@ function Contact() {
             })
 
         } catch (error) {
+            console.error('EmailJS Error:', error)
+
             setStatus(
-                error.message || 'Unable to send your message. Please try again.'
+                'Unable to send your message. Please try again later.'
             )
         } finally {
             setIsSubmitting(false)
@@ -351,9 +359,11 @@ function Contact() {
                             whileHover={!isSubmitting ? { y: -3, scale: 1.01 } : {}}
                             whileTap={!isSubmitting ? { scale: 0.97 } : {}}
                         >
+
                             {isSubmitting ? 'Sending...' : 'Send Message'}
 
                             <Send size={17} />
+
                         </motion.button>
 
                         {status && (
@@ -374,9 +384,13 @@ function Contact() {
                     viewport={{ once: true, amount: 0.5 }}
                     transition={{ duration: 0.7 }}
                 >
+
                     <span>HAVE A PROJECT IN MIND?</span>
+
                     <p>Let's make it happen.</p>
+
                     <ArrowUpRight size={22} />
+
                 </motion.div>
 
             </div>
