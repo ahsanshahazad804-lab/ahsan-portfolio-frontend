@@ -1,3 +1,4 @@
+
 import { useState } from 'react'
 import { motion } from 'motion/react'
 import emailjs from '@emailjs/browser'
@@ -56,9 +57,9 @@ function Contact() {
         setStatus('')
 
         try {
-            const serviceID = import.meta.env.EMAILJS_SERVICE_ID
-            const templateID = import.meta.env.EMAILJS_TEMPLATE_ID
-            const publicKey = import.meta.env.EMAILJS_PUBLIC_KEY
+            const serviceID = import.meta.env.VITE_EMAILJS_SERVICE_ID
+            const templateID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID
+            const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
 
             if (!serviceID || !templateID || !publicKey) {
                 throw new Error('Email service is not configured.')
